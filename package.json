@@ -1,0 +1,20 @@
+{
+    "name": "daal-bot-t",
+    "description": "DaalBot but on Twitch",
+    "version": "0.5.0",
+    "maintainers": [
+        {
+            "name": "Piny"
+        }
+    ],
+    "dependencies": {
+        "dotenv": "^16.0.2",
+        "tmi.js": "^1.8.5"
+    },
+    "scripts": {
+        "launch": "node app.js"
+    },
+    "devDependencies": {
+        "@types/node": "^18.8.4"
+    }
+}

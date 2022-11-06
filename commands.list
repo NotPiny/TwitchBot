@@ -1,0 +1,13 @@
+ echo
+ subcheck
+ permit (QuimbyAlert)
+ ping
+ vibecheck
+ invite
+ addquote
+ quote
+ delquote [WIP]
+ piny
+ prefix
+ dice
+ cmds [WIP]
