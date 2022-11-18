@@ -13,7 +13,7 @@ module.exports = {
                 send(`Set your pronouns to ${args[1]}`)
             } else {
                 if (fs.existsSync(`./settings/${username}`)) {
-                fs.appendFileSync(`./settings/${username}/pronouns.txt`, args[1])
+                fs.appendFileSync(`./settings/${username}/pronouns.txt`, args[1]);
                 send(`Set your pronouns to ${args[1]}`)
                 } else {
                     fs.mkdirSync(`./settings/${username}`)
