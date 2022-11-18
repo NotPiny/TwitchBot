@@ -24,7 +24,7 @@ let options = {
 let client = new tmi.client(options);
 client.connect();
 
-client.on('message', (channel, tags, message, self) => {
+client.on('message', async (channel, tags, message, self) => {
     let prefix = '$';
     try {
     if (fs.existsSync(`./settings/${channel.slice(1)}/prefix.txt`)) {
@@ -50,6 +50,7 @@ client.on('message', (channel, tags, message, self) => {
 	const args = message.slice(1).split(' ');
 	const command = args.shift().toLowerCase();
 
+    try {
     if (fs.existsSync(`./commands/${command}.js`)) {
         const commandFile = require(`./commands/${command}.js`);
         if (self || !message.startsWith(prefix) && commandFile.anyPrefix != true) return;
@@ -63,4 +64,7 @@ client.on('message', (channel, tags, message, self) => {
             commandFile.run(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send);
         }
     }
+} catch {
+    return
+}
 });
