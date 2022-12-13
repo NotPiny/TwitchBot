@@ -8,14 +8,17 @@
         }
     ],
     "dependencies": {
+        "axios": "^1.2.1",
         "dotenv": "^16.0.2",
         "mathjs": "^11.3.3",
+        "node-fetch": "^3.3.0",
         "tmi.js": "^1.8.5"
     },
     "scripts": {
         "launch": "node app.js"
     },
     "devDependencies": {
-        "@types/node": "^18.8.4"
+        "@types/node": "^18.8.4",
+        "@types/tmi.js": "^1.8.2"
     }
 }

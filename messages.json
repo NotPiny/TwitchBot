@@ -1,0 +1,13 @@
+{
+    "Error": {
+        "Generic": "An error occurred. Please try again later."
+    },
+
+    "AccessDenied": {
+        "Generic": "You do not have permission to do this action.",
+        "NotModerator": "You must be a moderator to do this action.",
+        "NotBroadcaster": "You must be the broadcaster to do this action.",
+        "NotOwner": "You must be the owner of this channel to do this action.",
+        "ChannelLocked": "This channel does not have access to this action. Please contact Piny#1000 to ask for access."
+    }
+}

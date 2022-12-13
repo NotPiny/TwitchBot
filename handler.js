@@ -1,28 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-require('dotenv/config')
-let tmi = require("tmi.js"),
-  http = require('http');
-
+const messages = require('./messages.json');
+const client = require('./client.js');
 const config = require('./config.json');
- const channels = fs.readFileSync('./channels.list').toString().split('\n');
-  
-let options = {
-    options: {
-        debug: true
-    },
-    connection: {
-        reconnect: true
-    },
-    identity: {
-        username: config.client.name,
-        password: process.env.TMI
-    },
-    channels: channels
-};
-  
-let client = new tmi.client(options);
-client.connect();
+
+fs.readdirSync('./events').filter(file => file.endsWith('.js')).forEach(file => { require(`./events/${file}`); }) // Load events
 
 client.on('message', async (channel, tags, message, self) => {
     let prefix = '$';
@@ -50,21 +32,31 @@ client.on('message', async (channel, tags, message, self) => {
 	const args = message.slice(1).split(' ');
 	const command = args.shift().toLowerCase();
 
-    try {
     if (fs.existsSync(`./commands/${command}.js`)) {
+        fs.appendFileSync(`./command.log`, `${username} ran ${prefix}${command} with ${args ? args : 'nothing'} as the args in ${channelName} at ${new Date().toLocaleString()}\n`)
+
         const commandFile = require(`./commands/${command}.js`);
+
+        // Check if everything is correct
         if (self || !message.startsWith(prefix) && commandFile.anyPrefix != true) return;
         if (commandFile.channels) {
             if (!commandFile.channels.includes(channelName)) {
-                return;
+                send(messages.AccessDenied.ChannelLocked);
             } else {
-                commandFile.run(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send);
+                try {
+                    commandFile.run(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send);
+                } catch(err) {
+                    send(messages.Error.Generic);
+                    console.log(`Error running ${command} in ${channelName}: ${err}`);
+                }
             }
         } else {
-            commandFile.run(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send);
+            try {
+                commandFile.run(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send);
+            } catch(err) {
+                send(messages.Error.Generic);
+                console.log(`Error running ${command} in ${channelName}: ${err}`);
+            }
         }
     }
-} catch {
-    return
-}
 });

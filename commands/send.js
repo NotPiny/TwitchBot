@@ -4,15 +4,15 @@ module.exports = {
     category: 'Owner',
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
-        const channel = args[0]
-        const text = message.replace(`${prefix}send ${channel}`, '')
+        const targetChannel = args[0]
+        const text = message.replace(`${prefix}send ${targetChannel}`, '')
 
         if (!isOwner) return;
 
         try {
-            client.say(channel, text);
+            client.say(targetChannel, text);
         } catch (err) {
-            console.log(`Error sending message to ${channel}: ${err}`);
+            console.log(`Error sending message to ${targetChannel}: ${err}`);
         }
     }
 }
