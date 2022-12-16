@@ -5,7 +5,7 @@ module.exports = {
     usage: 'poll <question>',
 
     run: async(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
-        const question = message.split('?')[0]
+        const question = message.split('?')[0].replace(`${prefix}poll `, '')
         if (!question) return send(`Please provide a question!`)
         const options = message.split('?')[1].trim().split(' ')
         if (!options) return send(`Please provide options!`)
