@@ -23,7 +23,7 @@ rl.on('line', (text) => {
     if (command == 'eval') {
         const code = args.slice(1).join(' ');
         try {
-            eval(code)
+            eval(`${code}`)
                 .then(result => console.log(result))
                 .catch(err => console.log(err));
         } catch (err) {
