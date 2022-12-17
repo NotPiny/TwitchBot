@@ -12,9 +12,14 @@ module.exports = {
     ],
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
+        // Gather the arguments
         const user = args[0]
         const permit = message.replace(user, '').replace(command, '').slice(1)
+
+        // Generate a random number from 0 to 2
         let success = randomInt(3)
+
+        // If the number is 1 then the user is approved
         if (success == 1) {
             send(`${user} was approved for ${permit}`)
         } else {

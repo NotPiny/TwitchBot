@@ -1,13 +1,7 @@
-require('dotenv/config')
-let tmi = require("tmi.js"),
-    http = require('http');
-    function randomInt(max) {
-        return (Math.floor(Math.random() * max) /**+ 1*/);
-    }
-const fs = require('fs');
-const config = require('./config.json');
-const channels = fs.readFileSync('./channels.list').toString().split('\n');
+// Just a simple server that listens on port 80
+let http = require('http');
 
+// Load the handler
 require('./handler.js');
 
 let server = http.createServer(); 
