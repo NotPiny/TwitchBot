@@ -38,7 +38,7 @@ client.on('message', async (channel, tags, message, self) => {
         const commandFile = require(`./commands/${command}.js`);
 
         // Check if everything is correct
-        if (self || !message.startsWith(prefix) && commandFile.anyPrefix !== true) return;
+        if ((self && config.ignoreSelf) || !message.startsWith(prefix) && commandFile.anyPrefix !== true) return;
         if (commandFile.channels) {
             if (!commandFile.channels.includes(channelName)) {
                 send(messages.AccessDenied.ChannelLocked);

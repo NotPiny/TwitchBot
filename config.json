@@ -2,10 +2,10 @@
     "Owners": [
         "notpiny"
     ],
-    "channels": [
-        "Outdated: This is now being controlled by the channels.list file."
-    ],
+
     "client": {
         "name": "DaalBotT"
-    }
+    },
+
+    "ignoreSelf": true
 }

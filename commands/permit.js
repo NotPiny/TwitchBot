@@ -14,7 +14,7 @@ module.exports = {
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
         // Gather the arguments
         const user = args[0]
-        const permit = message.replace(user, '').replace(command, '').slice(1)
+        const permit = message.replace(user, '').replace(`${prefix}permit`, '').slice(1)
 
         // Generate a random number from 0 to 2
         let success = randomInt(3)
