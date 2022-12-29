@@ -7,6 +7,7 @@ const config = require('./config.json');
 fs.readdirSync('./events').filter(file => file.endsWith('.js')).forEach(file => { require(`./events/${file}`); }) // Load events
 
 client.on('message', async (channel, tags, message, self) => {
+    // Set the prefix
     let prefix = '$';
     try {
     if (fs.existsSync(`./settings/${channel.slice(1)}/prefix.txt`)) {
@@ -16,10 +17,12 @@ client.on('message', async (channel, tags, message, self) => {
         return
     }
 
+    // Create a function to send messages
     function send(message) {
         client.say(channel, message)
     }
 
+    // Set variables :)
     const settingsDir = `./settings/${channel.slice(1)}`
     const channelName = channel.slice(1)
     const user = tags.username
