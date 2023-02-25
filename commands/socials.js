@@ -5,7 +5,8 @@ module.exports = {
 
     channels: [
         'daalsavage786',
-        'quimbyalert'
+        'quimbyalert',
+        'racreational'
     ],
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
@@ -15,6 +16,8 @@ module.exports = {
         } else if (channelName == 'quimbyalert') {
             // If the channel is Quimby's just send the links to her socials
             send(`Twitter: https://twitter.com/QuimbyAlert | Discord: https://discord.gg/wsEDGbePFa`)
+        } else if (channelName == 'racreational') {
+            send(`Twitter: twitterDOTcom/Racreational | Discord: discordDOTgg/z48fafsn5m`)
         }
     }
 }

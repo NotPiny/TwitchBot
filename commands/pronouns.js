@@ -1,4 +1,5 @@
 const fs = require('fs');
+const util = require('../util.js');
 
 module.exports = {
     name: 'pronouns',
@@ -9,18 +10,19 @@ module.exports = {
         try {
         // Check if the user wants to set their pronouns or look up someone else's
         if (args[0] == 'set') {
+            const id = tags['user-id']
             // Check if the user has a settings folder and if they have a pronouns.txt file
-            if (fs.existsSync(`./settings/${username}/pronouns.txt`)) {
-                fs.writeFileSync(`./settings/${username}/pronouns.txt`, args[1])
+            if (fs.existsSync(`./settings/${id}/pronouns.txt`)) {
+                fs.writeFileSync(`./settings/${id}/pronouns.txt`, args[1])
                 send(`Set your pronouns to ${args[1]}`)
             } else {
                 // If they don't have a settings folder, create one and then create a pronouns.txt file
-                if (fs.existsSync(`./settings/${username}`)) {
-                    fs.appendFileSync(`./settings/${username}/pronouns.txt`, args[1]);
+                if (fs.existsSync(`./settings/${id}`)) {
+                    fs.appendFileSync(`./settings/${id}/pronouns.txt`, args[1]);
                     send(`Set your pronouns to ${args[1]}`)
                 } else {
-                    fs.mkdirSync(`./settings/${username}`)
-                    fs.appendFileSync(`./settings/${username}/pronouns.txt`, args[1])
+                    fs.mkdirSync(`./settings/${id}`)
+                    fs.appendFileSync(`./settings/${id}/pronouns.txt`, args[1])
                     send(`Set your pronouns to ${args[1]}`)
                 }
             }
@@ -28,10 +30,13 @@ module.exports = {
             // If the user doesn't want to set their pronouns, look up someone else's
             const user = args[0].replace('@', '').trim().toLowerCase()
 
+            // Get the user's ID
+            const id = util.nameToId(user)
+
             // Check if the user has a settings folder and if they have a pronouns.txt file
-            if (fs.existsSync(`./settings/${user}/pronouns.txt`)) {
+            if (fs.existsSync(`./settings/${id}/pronouns.txt`)) {
                 // If they do, send the pronouns
-                send(`${user}'s pronouns are ${fs.readFileSync(`./settings/${user}/pronouns.txt`).toString()}`)
+                send(`${user}'s pronouns are ${fs.readFileSync(`./settings/${id}/pronouns.txt`).toString()}`)
             } else {
                 // If they don't, tell them they haven't set their pronouns
                 send(`${user} hasn't set their pronouns yet!`)

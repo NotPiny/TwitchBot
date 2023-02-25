@@ -7,11 +7,15 @@ const config = require('./config.json');
 fs.readdirSync('./events').filter(file => file.endsWith('.js')).forEach(file => { require(`./events/${file}`); }) // Load events
 
 client.on('message', async (channel, tags, message, self) => {
+    const channelId = tags['room-id']
+    const userId = tags['user-id']
+
     // Set the prefix
     let prefix = '$';
+
     try {
-    if (fs.existsSync(`./settings/${channel.slice(1)}/prefix.txt`)) {
-        prefix = fs.readFileSync(`./settings/${channel.slice(1)}/prefix.txt`).toString()
+    if (fs.existsSync(`./settings/${channelId}/prefix.txt`)) {
+        prefix = fs.readFileSync(`./settings/${channelId}/prefix.txt`).toString()
     }
     } catch {
         return
@@ -23,7 +27,7 @@ client.on('message', async (channel, tags, message, self) => {
     }
 
     // Set variables :)
-    const settingsDir = `./settings/${channel.slice(1)}`
+    const settingsDir = `./settings/${channelId}`
     const channelName = channel.slice(1)
     const user = tags.username
     const username = tags.username
@@ -47,7 +51,7 @@ client.on('message', async (channel, tags, message, self) => {
                 send(messages.AccessDenied.ChannelLocked);
             } else {
                 try {
-                    commandFile.run(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send);
+                    commandFile.run(client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send, channelId, userId);
                 } catch(err) {
                     send(messages.Error.Generic);
                     console.log(`Error running ${command} in ${channelName}: ${err}`);

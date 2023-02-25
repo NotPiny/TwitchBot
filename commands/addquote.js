@@ -7,36 +7,38 @@ module.exports = {
     category: 'Other',
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
+        // Get the channel ID
+        const channelId = tags['room-id'];
         if (isMod || config.Owners.includes(tags.username)) {
             // Get the quote
             const quote = message.replace(/addquote/, '').slice(2)
             try {
                 // Check if the channel has a settings folder
-                if (fs.existsSync(`./settings/${channelName}`)) {
+                if (fs.existsSync(`./settings/${channelId}`)) {
                     // Check if the channel has a quotes folder
-                    if (fs.existsSync(`./settings/${channelName}/quotes`)) {
+                    if (fs.existsSync(`./settings/${channelId}/quotes`)) {
                         // Get the amount of quotes
-                        const oldQuoteAmount = fs.readdirSync(`./settings/${channelName}/quotes`).length;
+                        const oldQuoteAmount = fs.readdirSync(`./settings/${channelId}/quotes`).length;
                         
                         // Add 1 to the amount of quotes
                         const newQuoteAmount = oldQuoteAmount + 1
 
                         // Write the quote to the quotes folder
-                        fs.writeFileSync(`./settings/${channelName}/quotes/${newQuoteAmount}.quote`, quote)
+                        fs.writeFileSync(`./settings/${channelId}/quotes/${newQuoteAmount}.quote`, quote)
                         send(`Created quote '${quote}' with the id ${newQuoteAmount}`)
                     } else {
                         // If the channel doesn't have a quotes folder, create one
-                        fs.mkdirSync(`./settings/${channelName}/quotes`)
+                        fs.mkdirSync(`./settings/${channelId}/quotes`)
 
                         // And then write the quote to the quotes folder
                         const oldQuoteAmount = 0;
                         const newQuoteAmount = oldQuoteAmount + 1
-                        fs.writeFileSync(`./settings/${channelName}/quotes/${newQuoteAmount}.quote`, quote)
+                        fs.writeFileSync(`./settings/${channelId}/quotes/${newQuoteAmount}.quote`, quote)
                         send(`Created quote '${quote}' with the id ${newQuoteAmount}`)
                     }
                 } else {
                     // If the channel doesn't have a settings folder, create one and tell the user to run the command again
-                    fs.mkdirSync(`./settings/${channelName}`);
+                    fs.mkdirSync(`./settings/${channelId}`);
                     send('Please run the command again we are setting up this channels settings at the moment.');
                 }
             } catch {

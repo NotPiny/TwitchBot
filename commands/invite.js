@@ -18,10 +18,9 @@ module.exports = {
         fs.appendFileSync(path.resolve('./channels.list'), `\n${username}`);
 
         // Tell the user that they have been added to the list and restart the bot
-        send('Added you to your channel will be loaded when the bot restarts, (Switched to linux so this is manual for now)')
+        send('Added you to your channel will be loaded when the bot restarts')
 
-        // Create a new instance of the bot and end the current one
-        // require('child_process').exec(`start "" "C:\\Users\\PinyLa\\Documents\\Code\\JS\\NODE\\Twitch\\DaalBot\\Batch/restart.bat"`);
-        // setTimeout(() => { process.exit(); }, 4000);
+        // Restart the bot
+        require('child_process').execSync('pm2 restart 0')
     }
 }
