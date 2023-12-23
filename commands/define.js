@@ -15,6 +15,26 @@ const customWords = [
         word: 'quimbyalert',
         definition: 'A warning that a quimby is nearby',
         example: 'Quimbyalert! Quimbyalert! Quimbyalert!'
+    },
+    {
+        word: 'rickroll',
+        definition: 'To trick someone into seeing never gonna give you up by rick astley by sending them a link that is supposedly relevant to the topic at hand',
+        example: 'Bro i cant believe you just got rickrolled'
+    },
+    {
+        word: 'chknnaget',
+        definition: 'Like a chicken nugget but worse',
+        example: 'I ate a chknnaget last night and it was disgusting!'
+    },
+    {
+        word: 'racreational',
+        definition: 'Recreational but dyslexic',
+        example: 'I went racreational swimming last night'
+    },
+    {
+        word: 'yartmapped',
+        definition: 'Listen it isnt a real word but i thought of it and told nobody and it appeared in the dream',
+        example: 'Get yartmapped nerd'
     }
 ]
 

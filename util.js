@@ -1,5 +1,6 @@
 const axios = require('axios')
 require('dotenv').config()
+const fs = require('fs')
 
 const GetUserIdFromTags = (tags) => tags['user-id']
 const GetChannelIdFromTags = (tags) => tags['room-id']

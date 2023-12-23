@@ -1,5 +1,14 @@
 function randomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
+    let num = Math.floor(Math.random() * (max + 1))
+
+    // if (max < 0) {
+    //     // Max is negative so turn max into a positive number and then make num negative
+    //     max = max * -1
+        
+    //     num = `-${Math.floor(Math.random() * (max + 1))}`
+    // }
+
+    return num;
 }
 
 module.exports = {
@@ -9,8 +18,15 @@ module.exports = {
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
         // Get the data from the message and generate the ✨ vibe ✨
+
+        // if (username == 'racreational') {
+        //     return send('RAC NOOOOOOOOOOOOOO')
+        // }
+
         let limit = parseInt(args)
         let vibe = randomInt(limit)
+
+        console.log(`Vibecheck: ${vibe}/${limit}`)
 
         if (message.endsWith('--settings')) { // If the message ends with --settings, send the settings
             send(`Options: limit (NUMBER)`)
@@ -53,7 +69,29 @@ module.exports = {
                 }
             } else {
                 // If no custom modifiers are used then just send a normal message
-                send(`You have a ${vibe}/${limit} vibe`)
+
+                let score = `${vibe}/${limit}`
+
+                switch (score) {
+                    case '69/420':
+                        send(`Hmm yes, it seems like you have gotten a ✨ Noice ✨ vibe (${score})`)
+                        break;
+                    case '-69/-420':
+                        send(`Hmmm a negative 69/420 vibe? Interesting... (${score})`)
+                        break;
+                    case 'NaN/NaN':
+                        send(`You were meant to put a number after the command, not a letter! (Ya dingus)`)
+                        break;
+                    case '0/0':
+                        send(`Quit tryna cheat the vibecheck!`)
+                        break;
+                    case `${limit}/${limit}`:
+                        send(`Turns out it is possible to have such a ✨ vibey vibe ✨ that you get a ${score} vibe`)
+                        break;
+                    default:
+                        send(`You have a ${score} vibe`)
+                        break;
+                }
             }
         }
     }

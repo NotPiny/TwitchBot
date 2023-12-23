@@ -10,6 +10,6 @@ module.exports = {
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
         // Quimbys chat made this joke and now i made it a command
-        send('Jaintry | He/him | Owner of the trading hall since 18/1/23')
+        send('Jaintry | Prefer not to say | Owner of the trading hall since 18/1/23')
     }
 }

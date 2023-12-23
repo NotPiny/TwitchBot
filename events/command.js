@@ -1,33 +1,15 @@
 const client = require('../client.js');
-const readline = require('readline');
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+const fs = require('fs');
 
-rl.on('line', (text) => {
-    const args = text.split(' ');
-    const command = args[0].toLowerCase();
+client.on('message', (channel, tags, msg, self) => {
+    if (tags['user-id'] !== '496329801') return; // Piny only :)
 
-    if (command == 'say') {
-        const channel = args[1].startsWith('#') ? args[1] : `#${args[1]}`.toLowerCase();
-        const message = args.slice(2).join(' ');
-        client.say(channel, message);
-    }
+    if (msg.toLowerCase().startsWith('$pushup')) {
+        const pushupFilePath = './settings/496329801/pushupcount.txt'
+        const pushupCount = parseInt(fs.readFileSync(pushupFilePath, 'utf8'))
 
-    if (command == 'join') {
-        const channel = args[1].startsWith('#') ? args[1] : `#${args[1]}`.toLowerCase();
-        client.join(channel);
-    }
+        fs.writeFileSync(pushupFilePath, `${pushupCount + 1}`)
 
-    if (command == 'eval') {
-        const code = args.slice(1).join(' ');
-        try {
-            eval(`${code}`)
-                .then(result => console.log(result))
-                .catch(err => console.log(err));
-        } catch (err) {
-            console.log(err); // Never can have to much error handling
-        }
+        client.say(channel, `Piny has done ${pushupCount + 1} pushups!`)
     }
 })

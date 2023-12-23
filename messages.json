@@ -8,6 +8,7 @@
         "NotModerator": "You must be a moderator to do this action.",
         "NotBroadcaster": "You must be the broadcaster to do this action.",
         "NotOwner": "You must be the owner of this channel to do this action.",
-        "ChannelLocked": "This channel does not have access to this action. Please contact Piny#1000 to ask for access."
+        "NotSubscriber": "You must be a subscribed to the channel to do this action.",
+        "ChannelLocked": "This channel does not have access to this action. Please contact \"piny.\" on discord to ask for access."
     }
 }

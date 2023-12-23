@@ -2,3 +2,6 @@
 /settings
 .env
 *.log
+
+#THIS WONT WORK
+./channels.list

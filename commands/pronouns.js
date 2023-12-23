@@ -31,7 +31,7 @@ module.exports = {
             const user = args[0].replace('@', '').trim().toLowerCase()
 
             // Get the user's ID
-            const id = util.nameToId(user)
+            const id = await util.nameToId(user)
 
             // Check if the user has a settings folder and if they have a pronouns.txt file
             if (fs.existsSync(`./settings/${id}/pronouns.txt`)) {

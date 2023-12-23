@@ -1,0 +1,36 @@
+[
+    {
+        "name": "eval",
+        "permissions": [
+            "OWNER"
+        ]
+    },
+    {
+        "name": "ping",
+        "permissions": []
+    },
+    {
+        "name": "restart",
+        "permissions": [
+            "OWNER"
+        ]
+    },
+    {
+        "name": "debug",
+        "permissions": [
+            "OWNER"
+        ]
+    },
+    {
+        "name": "cmds",
+        "permissions": []
+    },
+    {
+        "name": "invite",
+        "permissions": []
+    },
+    {
+        "name": "permit",
+        "permissions": []
+    }
+]

@@ -1,3 +1,7 @@
+function randomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
 module.exports = {
     name: 'dice',
     description: 'Rolls a dice',

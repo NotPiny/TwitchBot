@@ -1,3 +1,5 @@
+const util = require('../util.js');
+
 module.exports = {
     name: 'eval',
     description: 'Evaluates JavaScript code.',
