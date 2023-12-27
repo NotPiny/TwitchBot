@@ -10,6 +10,9 @@ module.exports = {
         // Get the problem
         const problem = message.replace(`${prefix}calc `, '');
 
+        /**
+         * @type {string}
+         */
         let outputProblem = problem;
 
         // Replace x with *
@@ -18,12 +21,15 @@ module.exports = {
         // Replace ÷ with / (idk why you would use ÷ but whatever)
         outputProblem = outputProblem.replace(/÷/g, '/');
 
-        // Now to deal with ² and ³
-        // Replace ² with **2
-        outputProblem = outputProblem.replace(/²/g, '**2');
+        // Now to deal with exponentiontals ¹, ² and ³
+        // Replace ¹ with nothing lmao it doesn't do anything
+        outputProblem = outputProblem.replace(/¹/g, '');
 
-        // Replace ³ with **3
-        outputProblem = outputProblem.replace(/³/g, '**3');
+        // Replace ² with ^2
+        outputProblem = outputProblem.replace(/²/g, '^2');
+
+        // Replace ³ with ^3
+        outputProblem = outputProblem.replace(/³/g, '^3');
 
         try {
             // Calculate the problem
