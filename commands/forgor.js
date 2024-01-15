@@ -24,22 +24,22 @@ module.exports = {
      * @returns {void}
     */
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
-        // Check if the bot (client) is a mod
-        try {
-            client.timeout(channelName, '', 1, 'Checking if the bot is a mod (Twitch doesnt just tell the bot if it is a mod or not)');
-        } catch {
-            return send('The bot needs to be a mod in the channel to use this command (twitch\'s rules not mine)');
-        }
+        const messages = [
+            '{user} forgor to sacrifice their soul to the almighty daalbot ...WAIT NO they forgor their lunch money',
+            '{user} forgor their lunch money',
+            '{user} forgor to pay their taxes',
+            '{user} forgor to breathe',
+            '{user} forgor to water their plants',
+            '{user} forgor to feed their kids',
+            '{user} forgor to eat their water',
+            '{user} forgor to drink their food',
+            '{user} forgor to carry name tags',
+            '{user} forgor to bring their homework',
+            '{user} forgor to drink the juice in skittles',
+        ]
 
-        // Get the user 
-        let user = username.toLowerCase();
+        const outputMessage = messages[Math.floor(Math.random() * messages.length)].replace('{user}', args[0] || username);
 
-        if (args[0]) user = args[0].toLowerCase().replace('@', '');
-
-        const request = await axios.get(`https://decapi.me/twitch/followage/${channelName}/${user}?token=${process.env.DecAPIToken}`)
-
-        if (request.data === `${user} does not follow ${channelName}`) return send(`${user} is not following ${channelName}!`);
-
-        send(`${user} has been following ${channelName} for ${request.data}`);
+        send(outputMessage);
     }
 }

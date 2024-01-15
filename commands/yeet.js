@@ -29,10 +29,12 @@ module.exports = {
         const messageList = [
             `${user} got yooted by ${username}`,
             `${user} got completely yeet by ${username}`,
-            `${user} picked the wrong house and got yeeted by ${username}`
+            `${user} picked the wrong house and got yeeted by ${username}`,
+            `${user} was catapulted by ${username}`,
+            `${user} was sent to neptune by ${username}`,
         ]
 
-        const yeetMessage = messageList[Math.floor(Math.random() * messageList.length) + 1];
+        const yeetMessage = messageList[Math.floor(Math.random() * messageList.length)];
 
         send(`${yeetMessage}`);
     }

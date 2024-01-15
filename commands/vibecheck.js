@@ -15,6 +15,7 @@ module.exports = {
     name: 'vibecheck',
     description: 'Checks your vibe',
     category: 'Other',
+    selfAllowed: true,
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
         // Get the data from the message and generate the ✨ vibe ✨

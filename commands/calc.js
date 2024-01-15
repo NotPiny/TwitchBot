@@ -34,7 +34,16 @@ module.exports = {
         try {
             // Calculate the problem
             const answer = math.evaluate(outputProblem)
-            send(`The answer is ${answer}`)
+            let responseNum = `${answer}`;
+
+            // Infinity check
+            if (responseNum.includes('Infinity')) return send(`So you're trying to break me? are you now? cmon ${username} you can do better than that!`);
+
+            // Add commas to the number
+            responseNum = responseNum.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+            // Send the answer
+            send(`The answer is ${responseNum}`)
         } catch {
             // If the problem is invalid, send an error message
             send(`That is not a valid math problem! (${outputProblem})`)

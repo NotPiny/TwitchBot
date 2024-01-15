@@ -53,6 +53,11 @@ client.on('message', async (channel, tags, message, self) => {
             await new Promise(r => setTimeout(r, 2 * 1000));
         }
 
+        // If it is itself it is probably from the echo command so we need some safety checks to prevent it from running potentially dangerous commands
+        if (self && !config.ignoreSelf) {
+            if (!commandFile.selfAllowed) return send(messages.AccessDenied.Self);
+        }
+
         // commands.filter(c => c.name === command)[0].permissions.forEach(permission => {
         //     const perm = permission.toLowerCase();
 
