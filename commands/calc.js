@@ -21,7 +21,7 @@ module.exports = {
         // Replace ÷ with / (idk why you would use ÷ but whatever)
         outputProblem = outputProblem.replace(/÷/g, '/');
 
-        // Now to deal with exponentiontals ¹, ² and ³
+        // Now to deal with exponentionals ¹, ² and ³
         // Replace ¹ with nothing lmao it doesn't do anything
         outputProblem = outputProblem.replace(/¹/g, '');
 

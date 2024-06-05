@@ -16,64 +16,45 @@ module.exports = {
         // Get the user
         let user = args[0]?.startsWith('@') ? args[0].slice(1) : args[0];
 
-        // Immortal users :D
-        const immortalUsers = [
-            "piny",
-            "maxnaturiike",
-            "mrmalouc",
-            "daalbot",
-        ]
+        // Regular expression to match non-Latin letters
+        const regex = /[^a-zA-Z0-9]/g;
 
-        // Fix bypasses because jaishuu is determined to kill me :(
-        function fixBypasses(string) {
-            return string
-                .replace('!', 'i')
-                .replace('l', 'i')
-                .replace('j', 'i')
-                .replace('1', 'i')
-                .replace('3', 'e')
-                .replace('4', 'a')
-                .replace('5', 's')
-                .replace('7', 't')
-                .replace('0', 'o')
-                .replace('9', 'g')
-                .replace('e', '')
-        }
+        /**
+         * @type {string}
+         */
+        let filterUser = user.toLowerCase().replace(regex, '');
 
-        // Check if the user is immortal
-        for (let i = 0; i < immortalUsers.length; i++) {
-            if (fixBypasses(user.toLowerCase()).includes(immortalUsers[i])) {
-                send(`No.`);
-                return;
-            }
-        }
+        const disallowedCharacters = /[𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫𝟢𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵𝟬þý:;ì¡!π|\[\]]/g;
+
+        filterUser = filterUser
+            .replace('!', 'i')
+            .replace('l', 'i')
+            .replace('1', 'i')
+            .replace('3', 'e')
+            .replace('4', 'a')
+            .replace('5', 's')
+            .replace('7', 't')
+            .replace('0', 'o')
+            .replace('9', 'g')
+            .replace('8', 'b')
+            .replace('z', 's')
+
+        filterUser = filterUser.toLowerCase()
+
+        if (
+            (filterUser.startsWith('no') || (filterUser.includes('pi') && filterUser.startsWith('p')))
+            && 
+            (filterUser.endsWith('ny') || (filterUser.endsWith('tree') || filterUser.endsWith('tre')))
+        ) return send(`[UNHELPFUL ERROR MESSAGE] (${Math.random()})`); // Math.random() is just to make sure that the message is different every time :)
+
+        if (filterUser == '') return send(`[UNHELPFUL ERROR MESSAGE] (${Math.random()})`);
+
+        if (user.match(disallowedCharacters)) return send(`[UNHELPFUL ERROR MESSAGE] (${Math.random()})`);
 
         const configJson = JSON.parse(await fs.readFile(path.resolve(`./config/kill.json`), 'utf8'));
 
         // Get a random death message
         let deathMessages = configJson.deathMessages;
-        // [
-            // `${user} was killed by ${username}!`,
-            // `${user} was sliced by ${username} with a sword!`,
-            // `${user} was shot by ${username} using a bow!`,
-            // `${user} was defenestrated by ${username}!`,
-            // `${user} was chucked into a volcano by ${username}!`,
-            // `${user} was stabbed by ${username}!`,
-            // `${user} picked the wrong house and got hit with a bat by ${username}!`,
-            // `${user} got hit by a car driven by ${username}!`,
-            // `${user} was pushed off a cliff by ${username}!`,
-            // `${user} was pushed into a pool of acid by ${username}!`,
-            // `${user} was pushed off a building by ${username}!`,
-            // `${user} was fed a cleaver by ${username}!`,
-            // `${user} was blasted by a powerwasher by ${username}!`,
-            // `${user} was exploded by ${username}!`,
-            // `${user} was given a tour of the sun by ${username}!`,
-            // `${user} was sent to the shadow realm by ${username}!`,
-            // `${user} was killed by a arrow to the knee by ${username}!`,
-            // `${user} was eaten by ${username}!`,
-            // `${user} was drowned by ${username}!`,
-            // `${user} was exploded by ${username} dropping a creeper on their head!`
-        // ]
 
         const deathMessage = deathMessages[Math.floor(Math.random() * deathMessages.length) + 1].replace('{user}', user).replace('{username}', username);
 

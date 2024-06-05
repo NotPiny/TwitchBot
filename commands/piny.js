@@ -6,10 +6,6 @@ module.exports = {
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
         // Just send info about Piny i guess (kinda obvious)
-        if (channelName == 'quimbyalert') {
-            send('Piny | He/They | Bi | bit.ly/m/Piny | Owner of the great hall since 29/12/2022')
-        } else {
-            send('Piny | He/They | Bi | bit.ly/m/Piny')
-        }
+        send('Piny | He/They | Bi | piny.dev' + channelName == 'quimbyalert' ? ' | Owner of the great hall since 29/12/2022' : '')
     }
 }

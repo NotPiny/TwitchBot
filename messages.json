@@ -10,6 +10,6 @@
         "NotOwner": "You must be the owner of this channel to do this action.",
         "NotSubscriber": "You must be a subscribed to the channel to do this action.",
         "ChannelLocked": "This channel does not have access to this action. Please contact \"piny.\" on discord to ask for access.",
-        "Self": "It appears that the bot has tried to run a command that it cannot run. Chances are this is from the echo command. If you are not using the echo command, please contact \"piny.\" on discord to ask for help."
+        "Self": "It appears that the bot has tried to run a command that it cannot run. Chances are this is from the echo command. If you are not using the echo command, please contact piny at piny.dev for help."
     }
 }

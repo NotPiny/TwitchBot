@@ -4,8 +4,8 @@
     ],
 
     "client": {
-        "name": "DaalBotT"
+        "name": "cndybot"
     },
 
-    "ignoreSelf": false
+    "ignoreSelf": true
 }

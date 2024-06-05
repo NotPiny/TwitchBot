@@ -4,4 +4,4 @@
 *.log
 
 #THIS WONT WORK
-./channels.list
+channels.list
