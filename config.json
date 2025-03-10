@@ -7,5 +7,5 @@
         "name": "cndybot"
     },
 
-    "ignoreSelf": true
+    "ignoreSelf": false
 }

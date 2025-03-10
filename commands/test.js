@@ -5,6 +5,8 @@ module.exports = {
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
         // Send back channel id
-        send(tags['room-id'])
+        send(`${tags['room-id']} ${tags['user-id']}`);
+
+        // Gamer Good Nation Morning :)
     }
 }

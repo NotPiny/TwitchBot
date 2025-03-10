@@ -91,6 +91,8 @@ client.on('message', async (channel, tags, message, self) => {
                 console.error(`Error running ${command} in ${channelName}: ${err}`);
             }
         }
+
+        delete require.cache[require.resolve(`./commands/${command}.js`)]; // Hot reload the commands
     } /** else {
         try {
             const fileData = fs.readFileSync(path.resolve(`./settings/${tags['room-id']}/customcommands/commands.json`), 'utf8');

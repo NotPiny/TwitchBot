@@ -35,6 +35,11 @@ const customWords = [
         word: 'yartmapped',
         definition: 'Listen it isnt a real word but i thought of it and told nobody and it appeared in the dream',
         example: 'Get yartmapped nerd'
+    },
+    {
+        word: 'olilz',
+        definition: 'A bot.',
+        example: 'Olilz is such a bot.'
     }
 ]
 

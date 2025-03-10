@@ -19,6 +19,9 @@
         "{user} was killed by a arrow to the knee by {username}!",
         "{user} was eaten by {username}!",
         "{user} was drowned by {username}!",
-        "{user} was exploded by {username} dropping a creeper on their head!"
+        "{user} was exploded by {username} dropping a creeper on their head!",
+        "{user} was fed to a sentient artifical intelligence disguised as a twitch bot by {username}!",
+        "{user} was killed by {username} using a nuke!",
+        "{user} forgot that {username} took their oxygen tank and suffocated"
     ]
 }

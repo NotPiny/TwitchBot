@@ -8,7 +8,7 @@ module.exports = {
         const math = require('mathjs')
 
         // Get the problem
-        const problem = message.replace(`${prefix}calc `, '');
+        const problem = message.toLowerCase().replace(`${prefix}calc `, '');
 
         /**
          * @type {string}

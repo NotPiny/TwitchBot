@@ -20,8 +20,8 @@ module.exports = {
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
         // Get the data from the message and generate the ✨ vibe ✨
 
-        // if (username == 'racreational') {
-        //     return send('RAC NOOOOOOOOOOOOOO')
+        // if (username == 'duhkles') {
+        //     return send('Oh no you dont.');
         // }
 
         let limit = parseInt(args)
@@ -33,7 +33,7 @@ module.exports = {
             send(`Options: limit (NUMBER)`)
         } else {
             // Check if any custom modifiers are used
-            if (message.endsWith('qube')) {
+            if (message.toLowerCase().endsWith('qube')) {
                 // Check the channel is correct
                 if (channelName === 'quimbyalert') {
                     // Check if the vibe is over the limit

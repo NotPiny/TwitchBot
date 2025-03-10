@@ -8,7 +8,8 @@ module.exports = {
     category: 'Custom',
 
     channels: [
-        'quimbyalert'
+        'quimbyalert',
+        'n0va__vt'
     ],
 
     run: async (client, message, args, channel, tags, isMod, isOwner, settingsDir, channelName, username, prefix, send) => {
@@ -21,7 +22,7 @@ module.exports = {
 
         // If the number is 1 then the user is approved
         if (success == 1) {
-            send(`${user} was approved for ${permit}`)
+            send(`${user} was approved for a permit to ${permit}`)
         } else {
             send(`${user} was not approved for a permit to ${permit}`)
         }
